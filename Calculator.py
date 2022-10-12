@@ -20,7 +20,8 @@ class Calc:
         """
         dollarAmount = dollarAmount.replace("$", "")
         dollarAmount = dollarAmount.replace(",", "")
-        if dollarAmount.isdigit():
+        digitsAmount = dollarAmount.replace(".", "")
+        if digitsAmount.isdigit():
             res = float(dollarAmount)
         else:
             res = None
