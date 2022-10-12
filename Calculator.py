@@ -41,7 +41,7 @@ class Calc:
         Input: income of the user
         Output: tax percentage of the income 
         """
-        if preTaxIncome > 0:
+        if preTaxIncome >= 0:
             taxPercentage = 10
             if preTaxIncome > 10275:
                 taxPercentage = 12
