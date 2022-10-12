@@ -136,7 +136,7 @@ class Calc:
             print("Sorry, that's not a valid income. Try Again.")
             hourlyIncome = cleanInput(input("What is your Hourly Income? Enter: "))
         hourlyIncomeRatio = cleanInput(input("On average, how many hours per week do you work? Enter: "))
-        while hourlyIncomeRatio < 0 or hourlyIncomeRatio > 168:
+        while hourlyIncomeRatio == None or hourlyIncomeRatio > 168:
             print("Sorry, that doesn't seem right. Count and try again.")
             hourlyIncomeRatio = cleanInput(input("On average, how many hours per week do you work? Enter: "))
         if hourlyIncomeRatio != 40:
