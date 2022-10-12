@@ -135,6 +135,13 @@ class Calc:
         while hourlyIncome == None: 
             print("Sorry, that's not a valid income. Try Again.")
             hourlyIncome = cleanInput(input("What is your Hourly Income? Enter: "))
+        hourlyIncomeRatio = cleanInput(input("On average, how many hours per week do you work? Enter: "))
+        while hourlyIncomeRatio < 0 or hourlyIncomeRatio > 168:
+            print("Sorry, that doesn't seem right. Count and try again.")
+            hourlyIncomeRatio = cleanInput(input("On average, how many hours per week do you work? Enter: "))
+        if hourlyIncomeRatio != 40:
+            print("Your hourly income has been adjusted to reflect a 40 hour working week.")
+            hourlyIncome *= hourlyIncomeRatio/40
         preTaxIncome = inputIncome = getYearlyFromHourly(hourlyIncome)
         monthlyIncome = getMonthlyFromHourly(hourlyIncome)
     elif incomeType == 2:           #Monthly
@@ -181,23 +188,23 @@ class Calc:
     #print results in format
     print(
         "========================RESULTS========================\n",
-        "Annual Income : ",formatDollar(inputIncome),"\n",
-        "Monthly Income : ",formatDollar(monthlyIncome),"\n",
-        "Hourly Income : ",formatDollar(hourlyIncome),"\n\n",
+        "Annual Income  :",formatDollar(inputIncome),"\n",
+        "Monthly Income :",formatDollar(monthlyIncome),"\n",
+        "Hourly Income  :",formatDollar(hourlyIncome),"\n\n",
         "Now let's deduct your 401(k) contributions.","\n",
-        "Annual 401(k) Contributions : ",formatDollar(yearly401kIn),"\n",
-        "Annual Income after 401(k) deductions : ", formatDollar(incomeMinus401k),"\n\n",
+        "Annual 401(k) Contributions :",formatDollar(yearly401kIn),"\n",
+        "Annual Income after 401(k) deductions :", formatDollar(incomeMinus401k),"\n\n",
         "Now let's tax your income.","\n",
-        "Your tax bracket gets you taxed at ",taxPercentage,"%\n",
-        "Annual Income after Tax and 401(k) deductions : ",formatDollar(postTaxIncome),"\n",
-        "Monthly Income after Tax and 401(k) deductions : ",formatDollar(getMonthlyFromYearly(postTaxIncome)),"\n",
-        "Hourly Income after Tax and 401(k) deductions : ",formatDollar(getHourlyFromYearly(postTaxIncome)),"\n\n",
+        "Your tax bracket gets you taxed at",taxPercentage,"%\n",
+        "Annual Income after Tax and 401(k) deductions  :",formatDollar(postTaxIncome),"\n",
+        "Monthly Income after Tax and 401(k) deductions :",formatDollar(getMonthlyFromYearly(postTaxIncome)),"\n",
+        "Hourly Income after Tax and 401(k) deductions  :",formatDollar(getHourlyFromYearly(postTaxIncome)),"\n\n",
         "Let's calculate how you should be spending your money according to the 50/30/20 Rule\n\n",
+        "50% will go to your NEEDS   :",formatDollar(yearlyNeeds),"annually or",formatDollar(monthlyNeeds),"monthly.","\n",
+        "30% will go to your WANTS   :",formatDollar(yearlyWants),"annually or",formatDollar(monthlyWants),"monthly.","\n",
+        "20% will go to your SAVINGS :",formatDollar(yearlySavings),"annually or",formatDollar(monthlySavings),"monthly.","\n\n",
         "'NEEDS' are those bills that you absolutely must pay and are the things necessary for survival. Examples are Rent, Utilities, Car payments, Groceries, and more.\n",
-        "Your 'needs' category has a annual budget of ",formatDollar(yearlyNeeds), " or ",formatDollar(monthlyNeeds), " monthly.\n\n",
-        "'WANTS' Wants are all the things you spend money on that are not absolutely essential. Examples are Dinner Out, Weekends out, Concerts, and more.\n",
-        "Your 'wants' category has a annual budget of ",formatDollar(yearlyWants), " or ",formatDollar(monthlyWants), " monthly.\n\n",
-        "'SAVINGS' is a category where you put this money towards High-Yield Savings Accounts or Retirement/Investment Accounts. Examples are HYSA with APY of 2.15% or an Investment Account that trades ETFs.\n",
-        "Your 'savings' category has a annual budget of ",formatDollar(yearlySavings), " or ",formatDollar(monthlySavings), " monthly.\n",
+        "'WANTS' are all the things you spend money on that are not absolutely essential. Examples are Dinner Out, Weekends out, Concerts, and more.\n",
+        "'SAVINGS' is a category where you put this money towards High-Yield Savings Accounts and/or Investment Accounts. Examples are HYSA with high APY or an Brokerage Account.\n",
         "======================================================="
     )
